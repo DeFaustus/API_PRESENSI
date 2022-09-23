@@ -2,9 +2,12 @@
     "name": "hhong/api_presensi",
     "authors": [
         {
-            "name": "GalihTitis",
-            "email": "62246951+DeFaustus@users.noreply.github.com"
+            "name": "kelompok_3",
+            "email": "asd@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "vlucas/phpdotenv": "^5.4",
+        "firebase/php-jwt": "^6.3"
+    }
 }
