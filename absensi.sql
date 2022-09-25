@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 23, 2022 at 11:52 AM
+-- Generation Time: Sep 25, 2022 at 04:22 AM
 -- Server version: 8.0.30
 -- PHP Version: 7.4.19
 
@@ -47,6 +47,13 @@ CREATE TABLE `auth` (
   `role_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+--
+-- Dumping data for table `auth`
+--
+
+INSERT INTO `auth` (`id`, `username`, `password`, `role_id`) VALUES
+(1, 'admin', 'admin', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -69,6 +76,15 @@ CREATE TABLE `role` (
   `role` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+--
+-- Dumping data for table `role`
+--
+
+INSERT INTO `role` (`id`, `role`) VALUES
+(1, 'admin'),
+(2, 'dosen'),
+(3, 'mahasiswa');
+
 -- --------------------------------------------------------
 
 --
@@ -77,12 +93,19 @@ CREATE TABLE `role` (
 
 CREATE TABLE `user` (
   `id` int NOT NULL,
-  `nim` varchar(45) DEFAULT NULL,
+  `nik` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `nama` varchar(45) DEFAULT NULL,
   `telp` varchar(45) DEFAULT NULL,
   `auth_id` int NOT NULL,
-  `kelas_id` int NOT NULL
+  `kelas_id` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `nik`, `nama`, `telp`, `auth_id`, `kelas_id`) VALUES
+(1, '123', 'admin', '088231', 1, NULL);
 
 --
 -- Indexes for dumped tables
@@ -120,7 +143,7 @@ ALTER TABLE `role`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `nim_UNIQUE` (`nim`),
+  ADD UNIQUE KEY `nim_UNIQUE` (`nik`),
   ADD UNIQUE KEY `usercol_UNIQUE` (`telp`),
   ADD KEY `fk_user_auth1_idx` (`auth_id`),
   ADD KEY `fk_user_kelas1_idx` (`kelas_id`);
@@ -139,7 +162,7 @@ ALTER TABLE `absen`
 -- AUTO_INCREMENT for table `auth`
 --
 ALTER TABLE `auth`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `kelas`
@@ -151,13 +174,13 @@ ALTER TABLE `kelas`
 -- AUTO_INCREMENT for table `role`
 --
 ALTER TABLE `role`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
