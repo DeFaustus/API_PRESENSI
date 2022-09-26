@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 25, 2022 at 04:22 AM
+-- Generation Time: Sep 26, 2022 at 08:00 AM
 -- Server version: 8.0.30
 -- PHP Version: 7.4.19
 
@@ -52,7 +52,9 @@ CREATE TABLE `auth` (
 --
 
 INSERT INTO `auth` (`id`, `username`, `password`, `role_id`) VALUES
-(1, 'admin', 'admin', 1);
+(1, 'admin', 'admin', 1),
+(2, 'bejo', 'bejo', 2),
+(3, 'jono', 'jono', 2);
 
 -- --------------------------------------------------------
 
@@ -64,6 +66,14 @@ CREATE TABLE `kelas` (
   `id` int NOT NULL,
   `nama_kelas` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Dumping data for table `kelas`
+--
+
+INSERT INTO `kelas` (`id`, `nama_kelas`) VALUES
+(1, '1A TRPL'),
+(2, '2A TRPL');
 
 -- --------------------------------------------------------
 
@@ -82,8 +92,7 @@ CREATE TABLE `role` (
 
 INSERT INTO `role` (`id`, `role`) VALUES
 (1, 'admin'),
-(2, 'dosen'),
-(3, 'mahasiswa');
+(2, 'mahasiswa');
 
 -- --------------------------------------------------------
 
@@ -105,7 +114,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `nik`, `nama`, `telp`, `auth_id`, `kelas_id`) VALUES
-(1, '123', 'admin', '088231', 1, NULL);
+(1, '123', 'admin', '088231', 1, NULL),
+(2, '3212', 'bejo', '02231', 2, 1),
+(3, '8493', 'jono', '08342', 3, 2);
 
 --
 -- Indexes for dumped tables
@@ -162,13 +173,13 @@ ALTER TABLE `absen`
 -- AUTO_INCREMENT for table `auth`
 --
 ALTER TABLE `auth`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -180,7 +191,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
