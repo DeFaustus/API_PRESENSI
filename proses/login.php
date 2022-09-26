@@ -15,13 +15,20 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $input = json_decode(file_get_contents('php://input'), true);
 if (!isset($input['username']) || !isset($input['password'])) {
     http_response_code(400);
-    exit();
+    echo json_encode([
+        'status'        =>  400,
+        'message'       => 'Bad Request'
+    ]);
 }
 $query = $conn->query("SELECT *FROM auth WHERE username = '" . $input['username'] . "' AND password = '" . $input['password'] . "'");
 $row = $query->num_rows;
 $data = $query->fetch_assoc();
 if ($row <= 0) {
-    echo "gak enek";
+    http_response_code(401);
+    echo json_encode([
+        'status'        =>  401,
+        'message'       => 'User Tidak Ditemukan'
+    ]);
 }
 $expired_time = time() + (15 * 60);
 $payload = [
@@ -33,7 +40,9 @@ $payload = [
     'exp' => $expired_time
 ];
 $access_token = JWT::encode($payload, $_ENV['SECRET_TOKEN'], 'HS256');
+http_response_code(200);
 echo json_encode([
-    'accessToken' => $access_token,
-    'expiry' => date(DATE_ISO8601, $expired_time)
+    'status'        => 200,
+    'accessToken'   => $access_token,
+    'expiry'        => date(DATE_ISO8601, $expired_time)
 ]);
