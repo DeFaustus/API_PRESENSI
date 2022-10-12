@@ -14,7 +14,7 @@ $date = new DateTimeImmutable();
 $data = [
     "payment_type" => "bank_transfer",
     "transaction_details" => [
-        "gross_amount" => 5000,
+        "gross_amount" => 6000,
         "order_id" => "order-101c-" . $date->getTimestamp() . ""
     ],
     "customer_details" => [
