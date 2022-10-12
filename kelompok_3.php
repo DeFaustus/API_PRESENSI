@@ -1,4 +1,13 @@
 <?php
+/* 
+kelompok 3
+- Galih Titis Bagus Catry
+- Galang Wijaya
+- Rafa putra
+- Anandha Army Antassa
+- Tio Ramadhani
+- Aza Faiz Hamdani
+*/
 $url = "https://api.sandbox.midtrans.com/v2/charge";
 $serverKey = "SB-Mid-server-tz0kZd-StlcqL9VWOaKmP7_o";
 $date = new DateTimeImmutable();
@@ -45,6 +54,12 @@ $data = [
             "quantity" => 1,
             "name" => "Tio Ramadhani"
         ],
+        [
+            "id" => "item06",
+            "price" => 1000,
+            "quantity" => 1,
+            "name" => "Aza Faiz Hamdani"
+        ],
     ],
     "bank_transfer" => [
         "bank" => "bca",
@@ -58,8 +73,8 @@ $data = [
             ],
             "payment" => [
                 [
-                    "id" => "Your Custom Text in ID language",
-                    "en" => "Your Custom Text in EN language"
+                    "id" => "Terimaksih telah membayar",
+                    "en" => "Terimaksih telah membayar"
                 ]
             ]
         ],
